@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ItemParams } from "react-contexify";
 import { ItemData, ItemProps } from "../types/contextmenu";
 import React, { createContext, useContext, ReactNode } from "react";
@@ -8,7 +9,6 @@ import {
   ToothState,
   UpdateToothAction,
 } from "../types/tooth";
-import { initState } from "@/constants/tooth";
 
 const ToothContext = createContext<ToothContextType | undefined>(undefined);
 
@@ -123,8 +123,30 @@ export function ToothProvider({ children }: OdontogramProviderProps) {
     [state]
   );
 
+  const validateBahanRestorasiZones = (
+    currentBahanRestorasi: any,
+    activeType: string,
+    activeZone: string,
+    value: number
+  ) => {
+    const updatedBahanRestorasi = { ...currentBahanRestorasi };
+
+    if (value === 1) {
+      // Reset the same zone in all other materials to 0
+      Object.keys(updatedBahanRestorasi).forEach((material) => {
+        if (material !== activeType) {
+          updatedBahanRestorasi[material][activeZone] = 0;
+        }
+      });
+    }
+
+    // Update the active material's zone
+    updatedBahanRestorasi[activeType][activeZone] = value;
+
+    return updatedBahanRestorasi;
+  };
+
   function handleZoneBasedProperty(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     prevState: any,
     zone: string,
     value: number
@@ -308,43 +330,14 @@ export function ToothProvider({ children }: OdontogramProviderProps) {
           break;
 
         case "AMF":
-          newState.bahanRestorasi.AMF = handleZoneBasedProperty(
-            newState.bahanRestorasi.AMF,
-            zone,
-            value
-          );
-          break;
         case "GIF":
-          newState.bahanRestorasi.GIF = handleZoneBasedProperty(
-            newState.bahanRestorasi.GIF,
-            zone,
-            value
-          );
-          break;
         case "COF":
-          newState.bahanRestorasi.COF = handleZoneBasedProperty(
-            newState.bahanRestorasi.COF,
-            zone,
-            value
-          );
-          break;
         case "FIS":
-          newState.bahanRestorasi.FIS = handleZoneBasedProperty(
-            newState.bahanRestorasi.FIS,
-            zone,
-            value
-          );
-          break;
         case "INL":
-          newState.bahanRestorasi.INL = handleZoneBasedProperty(
-            newState.bahanRestorasi.INL,
-            zone,
-            value
-          );
-          break;
         case "ONL":
-          newState.bahanRestorasi.ONL = handleZoneBasedProperty(
-            newState.bahanRestorasi.ONL,
+          newState.bahanRestorasi = validateBahanRestorasiZones(
+            newState.bahanRestorasi,
+            type,
             zone,
             value
           );
@@ -392,7 +385,56 @@ export function ToothProvider({ children }: OdontogramProviderProps) {
           break;
 
         case "CLEAR":
-          newState = initState;
+          newState = {
+            permukaanGigi: {
+              M: 0,
+              O: 0,
+              D: 0,
+              V: 0,
+              L: 0,
+            },
+            keadaanGigi: {
+              SOU: 1,
+              NON: 0,
+              UNE: 0,
+              PRE: 0,
+              IMV: 0,
+              ANO: 0,
+              DIA: 0,
+              ATT: 0,
+              ABR: 0,
+              CFR: 0,
+              NVT: 0,
+              RRX: 0,
+              MIS: 0,
+              CAR: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
+            },
+            bahanRestorasi: {
+              AMF: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
+              GIF: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
+              COF: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
+              FIS: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
+              INL: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
+              ONL: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
+            },
+            restorasi: {
+              FMC: 0,
+              POC: 0,
+              MPC: 0,
+              GMC: 0,
+              RCT: 0,
+              IPX: 0,
+              MEB: 0,
+              POB: 0,
+              PON: 0,
+              ABU: 0,
+            },
+            protesa: {
+              PRD: 0,
+              FLD: 0,
+              ACR: 0,
+            },
+          };
           break;
         default:
           break;
