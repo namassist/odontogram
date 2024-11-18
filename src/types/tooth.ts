@@ -121,3 +121,8 @@ export interface ToothTableProps {
   state: Record<number, ToothState>;
   selectedOption: string;
 }
+
+export interface UploadOdontogramData {
+  metadata: string;
+  image: Blob;
+}

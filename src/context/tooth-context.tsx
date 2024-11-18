@@ -8,6 +8,7 @@ import {
   ToothState,
   UpdateToothAction,
 } from "../types/tooth";
+import { initState } from "@/constants/tooth";
 
 const ToothContext = createContext<ToothContextType | undefined>(undefined);
 
@@ -16,56 +17,7 @@ function createInitialState(): DentalState {
   for (let i = 11; i <= 85; i++) {
     if (i % 10 === 9 || i % 10 === 0) continue;
 
-    state[i] = {
-      permukaanGigi: {
-        M: 0,
-        O: 0,
-        D: 0,
-        V: 0,
-        L: 0,
-      },
-      keadaanGigi: {
-        SOU: 1,
-        NON: 0,
-        UNE: 0,
-        PRE: 0,
-        IMV: 0,
-        ANO: 0,
-        DIA: 0,
-        ATT: 0,
-        ABR: 0,
-        CFR: 0,
-        NVT: 0,
-        RRX: 0,
-        MIS: 0,
-        CAR: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-      },
-      bahanRestorasi: {
-        AMF: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-        GIF: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-        COF: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-        FIS: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-        INL: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-        ONL: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-      },
-      restorasi: {
-        FMC: 0,
-        POC: 0,
-        MPC: 0,
-        GMC: 0,
-        RCT: 0,
-        IPX: 0,
-        MEB: 0,
-        POB: 0,
-        PON: 0,
-        ABU: 0,
-      },
-      protesa: {
-        PRD: 0,
-        FLD: 0,
-        ACR: 0,
-      },
-    };
+    state[i] = initState;
   }
   return state;
 }
@@ -390,56 +342,7 @@ export function ToothProvider({ children }: OdontogramProviderProps) {
           break;
 
         case "CLEAR":
-          newState = {
-            permukaanGigi: {
-              M: 0,
-              O: 0,
-              D: 0,
-              V: 0,
-              L: 0,
-            },
-            keadaanGigi: {
-              SOU: 1,
-              NON: 0,
-              UNE: 0,
-              PRE: 0,
-              IMV: 0,
-              ANO: 0,
-              DIA: 0,
-              ATT: 0,
-              ABR: 0,
-              CFR: 0,
-              NVT: 0,
-              RRX: 0,
-              MIS: 0,
-              CAR: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-            },
-            bahanRestorasi: {
-              AMF: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-              GIF: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-              COF: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-              FIS: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-              INL: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-              ONL: { center: 0, top: 0, bottom: 0, left: 0, right: 0 },
-            },
-            restorasi: {
-              FMC: 0,
-              POC: 0,
-              MPC: 0,
-              GMC: 0,
-              RCT: 0,
-              IPX: 0,
-              MEB: 0,
-              POB: 0,
-              PON: 0,
-              ABU: 0,
-            },
-            protesa: {
-              PRD: 0,
-              FLD: 0,
-              ACR: 0,
-            },
-          };
+          newState = initState;
           break;
         default:
           break;

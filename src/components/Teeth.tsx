@@ -1,7 +1,7 @@
-import Tooth from "./Tooth";
-import { TeethProps } from "../types/teeth";
-import { getArray } from "../lib/utils";
-import { useTooth } from "../context/tooth-context";
+import { Tooth } from "@/components";
+import { TeethProps } from "@/types/teeth";
+import { getArray } from "@/lib/utils";
+import { useTooth } from "@/context/tooth-context";
 
 const Teeth: React.FC<TeethProps> = ({
   labelPlacement,

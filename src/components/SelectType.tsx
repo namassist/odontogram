@@ -7,10 +7,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Label } from "./ui/label";
+import { Label } from "@/components/ui/label";
 import { useTooth } from "@/context/tooth-context";
 
-export function SelectType() {
+const SelectType = () => {
   const { selectedOption, setSelectedOption } = useTooth();
 
   return (
@@ -35,4 +35,6 @@ export function SelectType() {
       </Select>
     </div>
   );
-}
+};
+
+export default SelectType;

@@ -1,9 +1,9 @@
 import { useContextMenu } from "react-contexify";
 import "react-contexify/dist/ReactContexify.css";
 
-import { Zone } from "../types/teeth";
-import { ToothProps } from "../types/tooth";
-import { useTooth } from "../context/tooth-context";
+import { Zone } from "@/types/teeth";
+import { ToothProps } from "@/types/tooth";
+import { useTooth } from "@/context/tooth-context";
 
 const Tooth: React.FC<ToothProps> = ({
   labelPlacement,

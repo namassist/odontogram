@@ -8,14 +8,6 @@
 }
 
 @layer base {
-  .save-button {
-    @apply py-3 px-6 bg-[#4caf50] text-white border-none rounded-md cursor-pointer;
-  }
-
-  .save-button:hover {
-    @apply bg-[#308c33];
-  }
-
   .tooth {
     font-size: 6pt;
     font-weight: normal;

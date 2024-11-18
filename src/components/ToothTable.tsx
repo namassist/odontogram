@@ -1,4 +1,4 @@
-import ToothRow from "./ToothRow";
+import { ToothRow } from "@/components";
 import { ToothTableProps } from "@/types/tooth";
 
 const ToothTable: React.FC<ToothTableProps> = ({

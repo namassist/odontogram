@@ -1,7 +1,7 @@
 import { Menu, Submenu, Item, Separator } from "react-contexify";
-import { ContextMenuItem, ContextSubMenuItem } from "../types/contextmenu";
-import { contextMenu } from "../constants/contextmenu";
-import { useTooth } from "../context/tooth-context";
+import { ContextMenuItem, ContextSubMenuItem } from "@/types/contextmenu";
+import { contextMenu } from "@/constants/contextmenu";
+import { useTooth } from "@/context/tooth-context";
 
 export default function ContextMenu() {
   const { handleItemClick } = useTooth();
