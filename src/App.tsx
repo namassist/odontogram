@@ -16,6 +16,7 @@ export default function App() {
   const { toast } = useToast();
 
   const [searchParams] = useSearchParams();
+  const key = searchParams.get("key");
   const medicalRecord = searchParams.get("medical_record");
 
   const { state, selectedOption } = useTooth();
@@ -46,7 +47,7 @@ export default function App() {
   });
 
   const handleSaveOdontogram = () => {
-    if (!medicalRecord) {
+    if (!medicalRecord || !key) {
       toast({
         title: "Error",
         description: "Medical record tidak valid!",
@@ -57,6 +58,7 @@ export default function App() {
     mutation.mutate({
       ref,
       state,
+      key,
       medicalRecord,
     });
   };

@@ -126,3 +126,10 @@ export interface UploadOdontogramData {
   metadata: string;
   image: Blob;
 }
+
+export interface EncryptionPayload<T> {
+  data: T;
+  timestamp: number;
+  nonce: string;
+  medicalRecordId: string;
+}
