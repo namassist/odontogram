@@ -43,7 +43,7 @@ export async function uploadOdontogram({
       formData,
       {
         params: { node: "dev" },
-        headers: { "API-KEY": key },
+        headers: { Authorization: `Bearer ${key}` },
       }
     );
 
