@@ -1,6 +1,6 @@
 import * as React from "react";
 import { driver } from "driver.js";
-import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "driver.js/dist/driver.css";
 
 import { steps } from "@/constants/steps";
@@ -14,11 +14,14 @@ import { Loader2 } from "lucide-react";
 
 export default function App() {
   const { toast } = useToast();
+  const location = useLocation();
+  const queryString = location.search;
 
-  const [searchParams] = useSearchParams();
-  const key = searchParams.get("key");
-  const rawKey = key?.replace(/ /g, "+") as string;
-  const medicalRecord = searchParams.get("medical_record");
+  const keyMatch = queryString.match(/key=([^&]+)/);
+  const rawKey = keyMatch ? keyMatch[1] : "";
+
+  const medicalRecordMatch = queryString.match(/medical_record=(\d+)/);
+  const medicalRecord = medicalRecordMatch ? medicalRecordMatch[1] : "";
 
   const { state, selectedOption } = useTooth();
   const ref = React.useRef<HTMLDivElement>(null);
@@ -48,7 +51,7 @@ export default function App() {
   });
 
   const handleSaveOdontogram = () => {
-    if (!medicalRecord || !key) {
+    if (!medicalRecord || !rawKey) {
       toast({
         title: "Error",
         description: "Medical record tidak valid!",
