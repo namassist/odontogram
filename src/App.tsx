@@ -17,7 +17,7 @@ export default function App() {
 
   const [searchParams] = useSearchParams();
   const key = searchParams.get("key");
-  const rawKey = key?.replace(" ", "+") as string;
+  const rawKey = key?.replace(/ /g, "+") as string;
   const medicalRecord = searchParams.get("medical_record");
 
   const { state, selectedOption } = useTooth();

@@ -35,7 +35,7 @@ export async function uploadOdontogram({
     }
 
     const formData = new FormData();
-    formData.append("encryptedMetadata", JSON.stringify(state));
+    formData.append("metadata", JSON.stringify(state));
     formData.append("image", blob, "image.png");
 
     const response = await axiosInstance.post(
