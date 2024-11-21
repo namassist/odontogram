@@ -10,12 +10,12 @@ export const axiosInstance = axios.create({
 export async function uploadOdontogram({
   ref,
   state,
-  key,
+  rawKey,
   medicalRecord,
 }: {
   ref: React.RefObject<HTMLElement>;
   state: object;
-  key: string;
+  rawKey: string;
   medicalRecord: string;
 }) {
   if (ref.current === null) {
@@ -43,7 +43,7 @@ export async function uploadOdontogram({
       formData,
       {
         params: { node: "dev" },
-        headers: { Authorization: `Bearer ${key}` },
+        headers: { Authorization: `Bearer ${rawKey}` },
       }
     );
 

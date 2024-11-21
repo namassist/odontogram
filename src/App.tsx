@@ -17,6 +17,7 @@ export default function App() {
 
   const [searchParams] = useSearchParams();
   const key = searchParams.get("key");
+  const rawKey = key?.replace(" ", "+") as string;
   const medicalRecord = searchParams.get("medical_record");
 
   const { state, selectedOption } = useTooth();
@@ -58,7 +59,7 @@ export default function App() {
     mutation.mutate({
       ref,
       state,
-      key,
+      rawKey,
       medicalRecord,
     });
   };
